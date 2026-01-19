@@ -12,11 +12,15 @@ class Movie {
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
+    final show = json['show'] ?? {};
+    final image = show['image'] ?? {};
+    final externals = show['externals'] ?? {};
+    
     return Movie(
-      title: json['Title'] ?? 'No Title',
-      year: json['Year'] ?? 'N/A',
-      posterUrl: json['Poster'] ?? '',
-      imdbId: json['imdbID'] ?? '',
+      title: show['name'] ?? 'No Title',
+      year: (show['premiered'] ?? '').split('-').first,
+      posterUrl: image['medium'] ?? '',
+      imdbId: externals['imdb'] ?? '',
     );
   }
 }

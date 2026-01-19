@@ -84,7 +84,8 @@ class _MovieListPageState extends State<MovieListPage> {
           _hasMore = false;
         }
       });
-    } catch (e) {
+    } catch (e, stackTrace) {
+      debugPrint('Error searching movies: $e\n$stackTrace');
       setState(() {
         _isLoading = false;
       });
